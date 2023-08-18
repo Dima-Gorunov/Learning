@@ -14,7 +14,7 @@ WIDTH = 800
 HEIGHT = 600
 
 RADIUS = 5
-UPDATE_INTERVAL = 50
+UPDATE_INTERVAL = 25
 
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
 
