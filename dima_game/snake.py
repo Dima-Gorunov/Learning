@@ -80,6 +80,6 @@ class Snake:
 
     def get_crash(self):
         return self.crash
-    
+
     def get_segments(self):
         return self.segments

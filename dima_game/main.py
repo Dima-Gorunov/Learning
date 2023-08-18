@@ -10,11 +10,11 @@ pygame.display.set_caption("My Game")
 
 STEP = 10
 
-WIDTH = 800
-HEIGHT = 600
+WIDTH = 260
+HEIGHT = 180
 
 RADIUS = 5
-UPDATE_INTERVAL = 25
+UPDATE_INTERVAL = 250
 
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
 

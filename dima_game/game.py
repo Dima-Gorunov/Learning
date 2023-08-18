@@ -7,9 +7,10 @@ from helpers import print_game_over
 
 class Game:
     def __init__(self, width=800, height=600, screenVar=None, step=5, radius=2, update_interval=300):
+        
         self.start_update_interval = update_interval
         self.step = step
-        self.multiplier = 0.98
+        self.multiplier = 0.995
         self.radius = radius
         self.screen = screenVar
         self.width = width
