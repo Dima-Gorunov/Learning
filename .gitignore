@@ -1,1 +1,33 @@
+# Python-specific
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+.env/
+
+# IDE-specific
+.vscode/
+.idea/
+
+# Package-related
+*.egg-info/
+
+# Temporary or log files
+*.log
+*.swp
+*.swo
+
+# Database files
+*.db
+*.sqlite
+
+# Project files for different IDEs
+*.pyproj
+*.iml
+
+# Test coverage files
+.coverage
