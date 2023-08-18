@@ -1,9 +1,8 @@
-
 import pygame
-from helpers import create_coordinate
-from collections import Counter
-
-import random
+from helpers.helpers import create_coordinate
+import sys
+import os
+sys.path.append(os.path.join(os.getcwd(), '..'))
 
 
 class Snake:

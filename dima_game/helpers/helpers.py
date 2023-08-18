@@ -28,8 +28,8 @@ def create_fruit_random_coordinates(screen_width, screen_height, snake_step, sna
         "y": new_y
     }
     for item in snake_segments:
-        if (item["coordinates"]==result):
-            return create_fruit_random_coordinates(screen_width, screen_height, snake_step, snake_segments) 
+        if (item["coordinates"] == result):
+            return create_fruit_random_coordinates(screen_width, screen_height, snake_step, snake_segments)
 
     return result
 
