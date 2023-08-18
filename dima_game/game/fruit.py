@@ -1,7 +1,5 @@
+from helpers.helpers import create_coordinate, create_fruit_random_coordinates, match_check
 import pygame
-from helpers import create_coordinate, create_fruit_random_coordinates, match_check
-
-import random
 
 
 class Fruit:

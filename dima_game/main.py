@@ -1,12 +1,13 @@
 import pygame
-from game import Game
+
+from game.game import Game
 
 pygame.init()
 pygame.display.set_caption("My Game")
 
 
 # Примечание:
-# Нужно чтобы высота и штрина экрана ровно делилаcь на STEP(шаг змейки)
+# Нужно чтобы высота и штрина экрана ровно и четно делилаcь на STEP(шаг змейки)
 
 STEP = 10
 
