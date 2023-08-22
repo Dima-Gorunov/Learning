@@ -6,19 +6,19 @@ sys.path.append(os.path.join(os.getcwd(), '..'))
 
 
 class Snake:
-    def __init__(self, width=800, height=600, step=5, radius=2):
+    def __init__(self, screen, step=5, radius=2):
         self.crash = False
         self.length = 1
         self.radius = radius
         self.fruit_needed = False
         self.step = step
-        self.width = width
-        self.height = height
+        self.screen = screen
         self.direction = "down"
         self.last_direction = "down"
         self.current_coordinates = create_coordinate(
-            width//2, height//2, radius)
-        self.segments = [create_coordinate(width//2, height//2, radius)]
+            self.screen.get_width()//2, self.screen.get_height()//2, radius)
+        self.segments = [create_coordinate(
+            self.screen.get_width()//2, self.screen.get_height()//2, radius)]
 
     def add_coordinates(self):
         if self.direction == "left":
@@ -63,7 +63,7 @@ class Snake:
 
     def check_out(self):
         x, y = self.current_coordinates["coordinates"].values()
-        if (x > self.width or x < 0) or (y < 0 or y > self.height):
+        if (x > self.screen.get_width() or x < 0) or (y < 0 or y > self.screen.get_height()):
             self.crash = True
 
     def check_crush(self):

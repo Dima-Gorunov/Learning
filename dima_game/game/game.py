@@ -6,32 +6,32 @@ from helpers.helpers import print_game_over
 
 
 class Game:
-    def __init__(self, width=800, height=600, screenVar=None, step=5, radius=2, update_interval=300):
+    def __init__(self, screenVar=None, step=5, radius=2, update_interval=300):
 
+        self.multiplier = 1
+        self.shift = False
         self.start_update_interval = update_interval
         self.step = step
-        self.multiplier = 0.995
         self.radius = radius
         self.screen = screenVar
-        self.width = width
-        self.height = height
-        self.snake = Snake(self.width, self.height, self.step, self.radius)
-        self.fruit = Fruit(self.width, self.height, self.step, self.radius)
-        self.update_interval = update_interval
+        self.snake = Snake(self.screen, self.step, self.radius)
+        self.fruit = Fruit(self.screen, self.step, self.radius)
+        self.update_interval = update_interval*self.multiplier
 
     def handle_events(self):
         keys = pygame.key.get_pressed()
         self.snake.change_direction(keys)
+        self.change_shift(keys)
 
     def update(self):
         if self.snake.get_crash():
             return
+        self.check_shift()
         self.snake.add_coordinates()
         self.snake.delete_back_side()
         if (self.snake.get_current_coordinates() == self.fruit.get_coordinates()):
             self.snake.add_length()
             self.fruit.generate_fruit(self.snake.get_segments())
-            self.change_update_interval()
         self.snake.check_out()
         self.snake.check_crush()
 
@@ -47,12 +47,34 @@ class Game:
         return self.update_interval
 
     def set_update_interval(self, value):
-        self.update_interval = value
+        self.update_interval = int(value)
 
-    def change_update_interval(self):
-        self.update_interval *= self.multiplier
+    def set_multiplier(self, value=1):
+        self.multiplier = value
+
+    def get_multiplier(self):
+        return self.multiplier
 
     def restart_game(self):
-        self.snake = Snake(self.width, self.height, self.step, self.radius)
-        self.fruit = Fruit(self.width, self.height, self.step, self.radius)
+        self.snake = Snake(self.screen, self.step, self.radius)
+        self.fruit = Fruit(self.screen, self.step, self.radius)
         self.set_update_interval(self.start_update_interval)
+
+    def set_shift(self, value):
+        self.shift = value
+
+    def get_shift(self):
+        return self.shift
+
+    def change_shift(self, keys):
+
+        if keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]:
+            self.set_shift(True)
+        else:
+            self.set_shift(False)
+
+    def check_shift(self):
+        if self.get_shift():
+            self.set_update_interval(self.start_update_interval*0.1)
+        else:
+            self.set_update_interval(self.start_update_interval)

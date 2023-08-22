@@ -1,40 +1,45 @@
 import pygame
 
 from game.game import Game
-
-pygame.init()
-pygame.display.set_caption("My Game")
+from test_screen import TestScreen
 
 
-# Примечание:
-# Нужно чтобы высота и штрина экрана ровно и четно делилаcь на STEP(шаг змейки)
+def main():
+    pygame.init()
+    pygame.display.set_caption("My Game")
 
-STEP = 10
+    # Примечание:
+    # Нужно чтобы высота и штрина экрана ровно и четно делилаcь на STEP(шаг змейки)
 
-WIDTH = 260
-HEIGHT = 180
+    STEP = 10
 
-RADIUS = 5
-UPDATE_INTERVAL = 250
+    WIDTH = 540
+    HEIGHT = 180
 
-screen = pygame.display.set_mode([WIDTH, HEIGHT])
+    RADIUS = 5
+    UPDATE_INTERVAL = 400
 
-RUNNiNG = True
+    screen = pygame.display.set_mode([WIDTH, HEIGHT])
 
-current_time = pygame.time.get_ticks()
+    RUNNiNG = True
 
-game = Game(WIDTH, HEIGHT, screen, STEP, RADIUS, UPDATE_INTERVAL)
+    current_time = pygame.time.get_ticks()
 
-while RUNNiNG:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            RUNNiNG = False
+    game = Game(screen, STEP, RADIUS, UPDATE_INTERVAL)
 
-    game.handle_events()
-    if pygame.time.get_ticks() - current_time >= game.get_update_interval():
-        game.update()
-        game.draw()
-        current_time = pygame.time.get_ticks()
-    pygame.display.flip()
+    while RUNNiNG:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                RUNNiNG = False
 
-pygame.quit()
+        game.handle_events()
+        if pygame.time.get_ticks() - current_time >= game.get_update_interval():
+            game.update()
+            game.draw()
+            current_time = pygame.time.get_ticks()
+        pygame.display.flip()
+    pygame.quit()
+
+
+if __name__ == '__main__':
+    main()

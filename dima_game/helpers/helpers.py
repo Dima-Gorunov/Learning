@@ -13,23 +13,28 @@ def create_coordinate(x=0, y=0, r=2, color=(0, 0, 255)):
     }
 
 
+def print_circle(screen, x=0, y=0, color=(0, 0, 0), radius=2):
+    pygame.draw.circle(screen, color, (x, y), radius)
+
+
 def print_arr(screen, arr):
     for item in arr:
-        pygame.draw.circle(
-            screen, item["color"], (item["coordinates"]["x"], item["coordinates"]["y"]), item["radius"])
+        print_circle(screen, item["color"], (item["coordinates"]
+                     ["x"], item["coordinates"]["y"]), item["radius"])
 
 
-def create_fruit_random_coordinates(screen_width, screen_height, snake_step, snake_segments):
+def create_fruit_random_coordinates(screen, snake_step, snake_segments):
 
-    new_x = random.randint(1, ((screen_width/snake_step)-1))*snake_step
-    new_y = random.randint(1, ((screen_height/snake_step)-1))*snake_step
+    new_x = random.randint(1, ((screen.get_width()/snake_step)-1))*snake_step
+    new_y = random.randint(1, ((screen.get_height()/snake_step)-1))*snake_step
     result = {
         "x": new_x,
         "y": new_y
     }
     for item in snake_segments:
         if (item["coordinates"] == result):
-            return create_fruit_random_coordinates(screen_width, screen_height, snake_step, snake_segments)
+            print("+++++")
+            return create_fruit_random_coordinates(screen, snake_step, snake_segments)
 
     return result
 

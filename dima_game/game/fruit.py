@@ -3,10 +3,9 @@ import pygame
 
 
 class Fruit:
-    def __init__(self, width=800, height=600, step=5, radius=2, color=(255, 0, 0)):
-        self.width = width
+    def __init__(self, screen, step=5, radius=2, color=(255, 0, 0)):
         self.eaten = False
-        self.height = height
+        self.screen = screen
         self.step = step
         self.color = color
         self.radius = radius
@@ -18,7 +17,7 @@ class Fruit:
     def generate_fruit(self, snake_segments=[{"coordinates": {"x": 0, "y": 0}}]):
         self.need_restart = False
         new_coord = create_fruit_random_coordinates(
-            self.width, self.height, self.step, snake_segments)
+            self.screen, self.step, snake_segments)
 
         fruit = create_coordinate(
             new_coord["x"], new_coord["y"], self.radius, (255, 0, 0))
