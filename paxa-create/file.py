@@ -47,6 +47,6 @@ while True:
             y =dlin*height +(dlin)*otstyp
     
     
-            pygame.draw.rect(screen, color, (x,y, width, height))     
+            pygame.draw.rect(screen, color, (x,y, width, height))    
     pygame.display.update()
 
